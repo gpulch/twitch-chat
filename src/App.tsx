@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
 import { socket } from "./socket";
 import { Chat } from "./components/Chat";
 
 import "./styles.css";
 
-const App = () => {
+export const App = () => {
   const [messages, setMessages] = useState([]);
   const [myMessage, setMyMessage] = useState([]);
 
@@ -42,5 +41,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;
