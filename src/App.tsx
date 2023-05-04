@@ -5,8 +5,8 @@ import { Chat } from "./components/Chat";
 import "./styles.css";
 
 export const App = () => {
-  const [messages, setMessages] = useState([]);
-  const [myMessage, setMyMessage] = useState([]);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [myMessage, setMyMessage] = useState<string[]>([]);
 
   const chatWindow = document.getElementById("chatWindow");
 
@@ -23,7 +23,7 @@ export const App = () => {
   };
 
   useEffect(() => {
-    if (messages.length > 0) {
+    if (messages.length > 0 && chatWindow) {
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
   }, [messages]);

@@ -1,40 +1,43 @@
 import React from "react";
 
-export const Chat = ({
-  messages = { messages },
-  myMessage = { myMessage },
-  setMessages = { setMessages },
-  setMyMessage = { setMyMessage },
-}) => {
-  const sendMessage = () => {
-    setMessages([...messages, `You said : ${myMessage}`]);
-  };
+export class Chat extends React.Component<{
+  messages: any;
+  myMessage: any;
+  setMessages: any;
+  setMyMessage: any;
+}> {
+  render() {
+    let { messages, myMessage, setMessages, setMyMessage } = this.props;
+    const sendMessage = () => {
+      setMessages([...messages, `You said : ${myMessage}`]);
+    };
 
-  const handleMessageInput = (event) => {
-    setMyMessage(event.target.value);
-  };
-  return (
-    <div className={"container"}>
-      <div id={"chatWindow"} className={"messages-list"}>
-        {messages.map((message, index) => (
-          <ul key={index}>{message}</ul>
-        ))}
+    const handleMessageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setMyMessage(event.target.value);
+    };
+    return (
+      <div className={"container"}>
+        <div id={"chatWindow"} className={"messages-list"}>
+          {messages.map((message: [], index: number) => (
+            <ul key={index}>{message}</ul>
+          ))}
+        </div>
+        <div className={"sendMessageContainer"}>
+          <input
+            className={"myMessageInput"}
+            value={myMessage}
+            onInput={handleMessageInput}
+            placeholder={"Type your message"}
+          />
+          <button
+            className={"sendMessage"}
+            id="sendMessage"
+            onClick={sendMessage}
+          >
+            Send
+          </button>
+        </div>
       </div>
-      <div className={"sendMessageContainer"}>
-        <input
-          className={"myMessageInput"}
-          value={myMessage}
-          onInput={handleMessageInput}
-          placeholder={"Type your message"}
-        />
-        <button
-          className={"sendMessage"}
-          id="sendMessage"
-          onClick={sendMessage}
-        >
-          Send
-        </button>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
