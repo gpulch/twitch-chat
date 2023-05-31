@@ -6,8 +6,8 @@ export const MessagesListContainer = styled.div`
   overflow: scroll;
   font-family: Arial, serif;
   font-weight: 400;
-  margin-left: 15px;
-  padding-right: 15px;
+  margin-left: 10px;
+  padding-right: 10px;
   padding-bottom: 0;
   line-height: 19.5px;
   ::-webkit-scrollbar {
@@ -15,10 +15,6 @@ export const MessagesListContainer = styled.div`
   }
   ul {
     padding: 4px;
-  }
-  ul:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 5px;
   }
 `;
 export const WelcomeToTheChat = styled.div`

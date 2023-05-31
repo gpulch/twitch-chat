@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as Styles from "./MessageList.styles";
 import { ScrollPausedPopover } from "../sroll-paused-popover";
 import { Message } from "../../Chat.types";

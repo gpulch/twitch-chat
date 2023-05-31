@@ -1,22 +1,22 @@
 import * as Styles from "./MessageRow.styles";
-import React from "react";
-import { Message } from "../../../../Chat.types";
+import React, { memo } from "react";
 
 type MessageRowProps = {
-  message: Message;
+  user: {
+    username: string;
+    color: string;
+  };
+  text: string;
 };
 
-export const MessageRow = ({ message }: MessageRowProps) => {
-  console.log("render message row");
+export const MessageRow = memo(({ user, text }: MessageRowProps) => {
   return (
     <span>
-      <Styles.Username style={{ color: message.user.color }}>
-        {message.user.username}
+      <Styles.Username style={{ color: user.color }}>
+        {user.username}
       </Styles.Username>
       : &nbsp;
-      <Styles.Text>{message.text}</Styles.Text>
+      <Styles.Text>{text}</Styles.Text>
     </span>
   );
-};
-
-//memo
+});

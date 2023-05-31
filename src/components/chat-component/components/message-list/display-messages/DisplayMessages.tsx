@@ -1,21 +1,21 @@
 import { Message } from "../../../Chat.types";
 import { MessageRow } from "./message-row";
-import React from "react";
+import React, { memo } from "react";
+import * as Styles from "./DisplayMessages.styles";
 
 type DisplayMessagesProps = {
   messages: Message[];
 };
-export const DisplayMessages = ({ messages }: DisplayMessagesProps) => {
-  console.log("render display message");
+export const DisplayMessages = memo(({ messages }: DisplayMessagesProps) => {
   return (
     <ul>
       {messages.map((message: Message, index: number) => {
         return (
-          <li key={index}>
-            <MessageRow message={message} />
-          </li>
+          <Styles.Message key={index}>
+            <MessageRow user={message.user} text={message.text} />
+          </Styles.Message>
         );
       })}
     </ul>
   );
-};
+});

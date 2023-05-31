@@ -8,6 +8,8 @@ import { connectSocket } from "../../sockets/chat.socket";
 import { MessageInfo, Message } from "./Chat.types";
 import * as Styles from "./Chat.styles";
 
+const checkIfEmpty = (string: string) => string.replace(/\s+/g, " ").trim();
+
 export const Chat = () => {
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const bottomOfTheChatRef = useRef<HTMLDivElement>(null);
@@ -17,19 +19,20 @@ export const Chat = () => {
   const [myMessage, setMyMessage] = useState<string>("");
 
   const onNewMessage = (messageInfo: MessageInfo) => {
-    setMessages((oldMessages: Message[]) => [
-      ...oldMessages,
-      {
-        user: {
-          username: messageInfo.user.username,
-          color: messageInfo.user.color,
+    if (checkIfEmpty(messageInfo.text))
+      setMessages((oldMessages: Message[]) => [
+        ...oldMessages,
+        {
+          user: {
+            username: messageInfo.user.username,
+            color: messageInfo.user.color,
+          },
+          text: messageInfo.text,
         },
-        text: messageInfo.text,
-      },
-    ]);
+      ]);
   };
   const sendMessage = () => {
-    if (myMessage) {
+    if (checkIfEmpty(myMessage)) {
       setMessages([
         ...messages,
         {
