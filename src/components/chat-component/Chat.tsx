@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MessageList } from "./components/message-list";
 import { ChatHeader } from "./components/chat-header";
 import { ChatFooter } from "./components/chat-footer";
 import { ChatUserInput } from "./components/chat-user-input";
-import { useRef } from "react";
-import { connectSocket } from "../../sockets/chat.socket";
-import { MessageInfo, Message } from "./Chat.types";
 import * as Styles from "./Chat.styles";
-
-const checkIfEmpty = (string: string) => string.replace(/\s+/g, " ").trim();
+import { useMessagesState } from "./chat-hooks/useMessagesState";
+import { checkIfEmpty } from "./Chat.utils";
 
 export const Chat = () => {
+  const [myMessage, setMyMessage] = useState<string>("");
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const bottomOfTheChatRef = useRef<HTMLDivElement>(null);
   const [userHasScrolledUp, setUserHasScrolledUp] = useState<boolean>(false);
 
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [myMessage, setMyMessage] = useState<string>("");
+  const [messages, setMessages] = useMessagesState();
 
-  const onNewMessage = (messageInfo: MessageInfo) => {
-    if (checkIfEmpty(messageInfo.text))
-      setMessages((oldMessages: Message[]) => [
-        ...oldMessages,
-        {
-          user: {
-            username: messageInfo.user.username,
-            color: messageInfo.user.color,
-          },
-          text: messageInfo.text,
-        },
-      ]);
-  };
   const sendMessage = () => {
     if (checkIfEmpty(myMessage)) {
       setMessages([
@@ -51,19 +35,6 @@ export const Chat = () => {
       });
     }
   };
-
-  // init socket connection on mount
-  useEffect(() => {
-    const socket = connectSocket();
-
-    // subscribe to new messages
-    socket.on("new-message", onNewMessage);
-
-    return () => {
-      console.log("closing socket");
-      socket.close();
-    };
-  }, []);
 
   // auto scroll-down on new message
   useEffect(() => {
@@ -91,9 +62,7 @@ export const Chat = () => {
       <Styles.SendMessageContainer>
         <ChatUserInput
           sendMessage={sendMessage}
-          messages={messages}
           myMessage={myMessage}
-          setMessages={setMessages}
           setMyMessage={setMyMessage}
         />
         <ChatFooter sendMessage={sendMessage} />

@@ -1,13 +1,10 @@
 import React, { KeyboardEvent } from "react";
 import * as Styles from "./ChatUserInput.styles";
 import { EmojiPicker } from "../emoji-picker";
-import { Message } from "../../Chat.types";
 
 type ChatUserInputProps = {
   sendMessage: Function;
-  messages: Message[];
   myMessage: string;
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   setMyMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
