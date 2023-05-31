@@ -4,7 +4,7 @@ import { ChatHeader } from "./components/chat-header";
 import { ChatFooter } from "./components/chat-footer";
 import { ChatUserInput } from "./components/chat-user-input";
 import { useRef } from "react";
-import { connectSocket } from "../../socket";
+import { connectSocket } from "../../sockets/chat.socket";
 import { MessageInfo, Message } from "./Chat.types";
 import * as Styles from "./Chat.styles";
 
@@ -19,16 +19,34 @@ export const Chat = () => {
   const onNewMessage = (messageInfo: MessageInfo) => {
     setMessages((oldMessages: Message[]) => [
       ...oldMessages,
-      { username: messageInfo.user.username, text: messageInfo.text },
+      {
+        user: {
+          username: messageInfo.user.username,
+          color: messageInfo.user.color,
+        },
+        text: messageInfo.text,
+      },
     ]);
   };
   const sendMessage = () => {
-    setMessages([...messages, { username: "You", text: myMessage }]);
-    setMyMessage("");
-    bottomOfTheChatRef.current?.scrollIntoView({
-      behavior: "auto",
-      block: "end",
-    });
+    if (myMessage) {
+      setMessages([
+        ...messages,
+        {
+          user: {
+            username: "You",
+            color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+          },
+          text: myMessage,
+        },
+      ]);
+
+      setMyMessage("");
+      bottomOfTheChatRef.current?.scrollIntoView({
+        behavior: "auto",
+        block: "end",
+      });
+    }
   };
 
   // init socket connection on mount

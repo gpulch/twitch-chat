@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Styles from "./MessageList.styles";
 import { ScrollPausedPopover } from "../sroll-paused-popover";
 import { Message } from "../../Chat.types";
+import { DisplayMessages } from "./display-messages";
 
 type MessageListProps = {
   messages: Message[];
@@ -61,23 +62,6 @@ export const MessageList = ({
     };
   };
 
-  const DisplayMessages = () => {
-    return (
-      <div>
-        {messages
-          .filter((message: Message) => message.text)
-          .map((message: Message, index: number) => {
-            return (
-              <ul key={index}>
-                <Styles.Username>{message.username}</Styles.Username>: &nbsp;
-                <Styles.Text>{message.text}</Styles.Text>
-              </ul>
-            );
-          })}
-      </div>
-    );
-  };
-
   return (
     <Styles.MessagesListContainer
       ref={chatWindowRef}
@@ -86,8 +70,9 @@ export const MessageList = ({
       }, 200)}
     >
       <Styles.WelcomeToTheChat>Welcome to the chat !</Styles.WelcomeToTheChat>
+
       <div id={"list"} ref={bottomOfTheChatRef}>
-        <DisplayMessages />
+        <DisplayMessages messages={messages} />
       </div>
 
       {userHasScrolledUp ? (

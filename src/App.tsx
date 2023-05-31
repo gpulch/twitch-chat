@@ -1,12 +1,11 @@
 import React from "react";
 import { Chat } from "./components/chat-component";
-import "./index.css";
-import { Page } from "./styles";
+import * as Styles from "./App.styles";
 
 export const App = () => {
   return (
-    <Page>
+    <Styles.Page>
       <Chat />
-    </Page>
+    </Styles.Page>
   );
 };

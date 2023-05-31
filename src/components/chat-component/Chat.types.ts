@@ -1,5 +1,5 @@
 export type Message = {
-  username: string;
+  user: { username: string; color: string };
   text: string;
 };
 
