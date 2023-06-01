@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const ReplyPopover = styled.div`
   display: flex;
   flex-direction: column;
-  width: 320px;
-  padding: 10px;
-  border: white;
-  border-radius: 5px;
+  width: 310px;
+  padding-bottom: 8px;
+
   img {
     height: 15px;
   }
@@ -16,8 +15,7 @@ export const ReplyPopoverHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: grey solid 1px;
-  border-radius: 5px;
+  font-weight: bolder;
 `;
 export const CancelReply = styled.button`
   color: white;

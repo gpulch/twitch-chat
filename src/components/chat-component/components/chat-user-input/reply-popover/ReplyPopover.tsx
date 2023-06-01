@@ -13,6 +13,7 @@ export const ReplyPopover = ({
 }: ReplyPopoverProps) => {
   const handleClick = () => {
     setIsReplying({ state: false, replyTo: { username: "", text: "" } });
+    document.getElementById("myMessageInput")?.focus();
   };
   return (
     <Styles.ReplyPopover>

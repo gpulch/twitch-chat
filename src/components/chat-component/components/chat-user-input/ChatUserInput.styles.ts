@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
+export const BorderAroundInputAndReply = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border: rgb(80, 80, 80) solid 1px;
+  border-radius: 5px;
+`;
 export const InputWithEmojiButton = styled.div`
   display: flex;
-  width: 92%;
+  width: 100%;
   border: 1px #67676b solid;
   border-radius: 5px;
   padding-right: 5px;

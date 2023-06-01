@@ -19,6 +19,8 @@ export const MessageRow = memo(
         state: true,
         replyTo: { username: user.username, text: text },
       });
+
+      document.getElementById("myMessageInput")?.focus();
     };
     return (
       <Styles.Message>

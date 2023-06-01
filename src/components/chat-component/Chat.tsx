@@ -72,7 +72,6 @@ export const Chat = () => {
         setUserHasScrolledUp={setUserHasScrolledUp}
         bottomOfTheChatRef={bottomOfTheChatRef}
         chatWindowRef={chatWindowRef}
-        isReplying={isReplying}
         setIsReplying={setIsReplying}
       />
 

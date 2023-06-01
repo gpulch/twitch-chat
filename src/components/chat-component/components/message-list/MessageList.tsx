@@ -1,6 +1,6 @@
 import React from "react";
 import * as Styles from "./MessageList.styles";
-import { ScrollPausedPopover } from "../sroll-paused-popover";
+import { ScrollPausedPopover } from "./sroll-paused-popover";
 import { IsReplying, Message } from "../../Chat.types";
 import { DisplayMessages } from "./display-messages";
 
@@ -10,7 +10,6 @@ type MessageListProps = {
   setUserHasScrolledUp: Function;
   chatWindowRef: React.RefObject<HTMLDivElement>;
   bottomOfTheChatRef: React.RefObject<HTMLDivElement>;
-  isReplying: IsReplying;
   setIsReplying: React.Dispatch<React.SetStateAction<IsReplying>>;
 };
 
@@ -20,7 +19,6 @@ export const MessageList = ({
   setUserHasScrolledUp,
   chatWindowRef,
   bottomOfTheChatRef,
-  isReplying,
   setIsReplying,
 }: MessageListProps) => {
   const scroll = () => {

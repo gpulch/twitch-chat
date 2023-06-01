@@ -3,6 +3,7 @@ import * as Styles from "./ChatUserInput.styles";
 import { EmojiPicker } from "../emoji-picker";
 import { ReplyPopover } from "./reply-popover";
 import { IsReplying } from "../../Chat.types";
+import { BorderAroundInputAndReply } from "./ChatUserInput.styles";
 
 type ChatUserInputProps = {
   sendMessage: Function;
@@ -34,13 +35,14 @@ export const ChatUserInput = ({
   };
 
   return (
-    <>
+    <BorderAroundInputAndReply>
       {isReplying.state ? (
         <ReplyPopover isReplying={isReplying} setIsReplying={setIsReplying} />
       ) : null}
 
       <Styles.InputWithEmojiButton>
         <Styles.MyMessageInput
+          id="myMessageInput"
           autoFocus
           value={myMessage}
           onInput={handleMessageInput}
@@ -49,6 +51,6 @@ export const ChatUserInput = ({
         />
         <EmojiPicker onChange={onEmojiClick} />
       </Styles.InputWithEmojiButton>
-    </>
+    </BorderAroundInputAndReply>
   );
 };
