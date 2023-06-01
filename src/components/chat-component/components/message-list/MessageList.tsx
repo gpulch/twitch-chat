@@ -3,7 +3,6 @@ import * as Styles from "./MessageList.styles";
 import { ScrollPausedPopover } from "../sroll-paused-popover";
 import { IsReplying, Message } from "../../Chat.types";
 import { DisplayMessages } from "./display-messages";
-import { ReplyPopover } from "../chat-user-input/reply-popover";
 
 type MessageListProps = {
   messages: Message[];
@@ -77,11 +76,7 @@ export const MessageList = ({
       <Styles.WelcomeToTheChat>Welcome to the chat !</Styles.WelcomeToTheChat>
 
       <div id={"list"} ref={bottomOfTheChatRef}>
-        <DisplayMessages
-          messages={messages}
-          isReplying={isReplying}
-          setIsReplying={setIsReplying}
-        />
+        <DisplayMessages messages={messages} setIsReplying={setIsReplying} />
       </div>
       {userHasScrolledUp ? (
         <ScrollPausedPopover

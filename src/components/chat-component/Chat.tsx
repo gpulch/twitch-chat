@@ -15,7 +15,7 @@ export const Chat = () => {
   const [userHasScrolledUp, setUserHasScrolledUp] = useState<boolean>(false);
   const [isReplying, setIsReplying] = useState<IsReplying>({
     state: false,
-    replyToUsername: "",
+    replyTo: { username: "", text: "" },
   });
 
   const [messages, setMessages] = useMessagesState();
@@ -32,8 +32,18 @@ export const Chat = () => {
           text: myMessage,
         },
       ]);
-
-      setMyMessage("");
+      if (!isReplying) {
+        setMyMessage("");
+      } else {
+        setMyMessage("");
+        setIsReplying({
+          state: false,
+          replyTo: {
+            username: isReplying.replyTo.username,
+            text: isReplying.replyTo.text,
+          },
+        });
+      }
       bottomOfTheChatRef.current?.scrollIntoView({
         behavior: "auto",
         block: "end",

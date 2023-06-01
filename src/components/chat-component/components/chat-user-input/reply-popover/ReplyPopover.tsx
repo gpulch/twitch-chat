@@ -1,6 +1,7 @@
 import React from "react";
 import * as Styles from "./ReplyPopover.styles";
 import { IsReplying } from "../../../Chat.types";
+import replyArrow from "../../../../../icons/replyArrow.png";
 
 type ReplyPopoverProps = {
   isReplying: IsReplying;
@@ -11,12 +12,18 @@ export const ReplyPopover = ({
   setIsReplying,
 }: ReplyPopoverProps) => {
   const handleClick = () => {
-    setIsReplying({ state: false, replyToUsername: "" });
+    setIsReplying({ state: false, replyTo: { username: "", text: "" } });
   };
   return (
-    <>
-      Réponse à @{isReplying.replyToUsername}
-      <Styles.CancelReply onClick={handleClick}>X</Styles.CancelReply>
-    </>
+    <Styles.ReplyPopover>
+      <Styles.ReplyPopoverHeader>
+        <img src={replyArrow} /> Réponse à @{isReplying.replyTo.username}
+        &nbsp;
+        <Styles.CancelReply onClick={handleClick}>X</Styles.CancelReply>
+      </Styles.ReplyPopoverHeader>
+      <Styles.ReplyToText>
+        {isReplying.replyTo.username} : {isReplying.replyTo.text}
+      </Styles.ReplyToText>
+    </Styles.ReplyPopover>
   );
 };

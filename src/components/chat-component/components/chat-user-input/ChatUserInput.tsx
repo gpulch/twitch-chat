@@ -35,7 +35,7 @@ export const ChatUserInput = ({
 
   return (
     <>
-      {isReplying ? (
+      {isReplying.state ? (
         <ReplyPopover isReplying={isReplying} setIsReplying={setIsReplying} />
       ) : null}
 

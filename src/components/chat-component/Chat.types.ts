@@ -16,5 +16,5 @@ export type MessageInfo = {
 
 export type IsReplying = {
   state: boolean;
-  replyToUsername: string;
+  replyTo: { username: string; text: string };
 };

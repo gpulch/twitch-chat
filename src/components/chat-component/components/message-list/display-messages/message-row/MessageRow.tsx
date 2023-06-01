@@ -9,17 +9,16 @@ type MessageRowProps = {
     color: string;
   };
   text: string;
-  isReplying: IsReplying;
   setIsReplying: React.Dispatch<React.SetStateAction<IsReplying>>;
 };
 
 export const MessageRow = memo(
-  ({ user, text, isReplying, setIsReplying }: MessageRowProps) => {
+  ({ user, text, setIsReplying }: MessageRowProps) => {
     const handleClick = () => {
-      console.log(user.username);
-      // useReply(user.username);
-      setIsReplying({ state: true, replyToUsername: user.username });
-      console.log(isReplying);
+      setIsReplying({
+        state: true,
+        replyTo: { username: user.username, text: text },
+      });
     };
     return (
       <Styles.Message>
