@@ -18,3 +18,8 @@ export type IsReplying = {
   state: boolean;
   replyTo: { username: string; text: string };
 };
+
+export type Reply = {
+  myReply: string;
+  repliedComment: Message;
+};

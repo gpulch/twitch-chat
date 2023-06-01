@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Message, MessageInfo } from "../Chat.types";
+import { Message, MessageInfo, Reply } from "../Chat.types";
 import { connectSocket } from "../../../sockets/chat.socket";
 import { checkIfEmpty } from "../Chat.utils";
 

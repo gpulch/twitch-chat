@@ -5,10 +5,11 @@ import * as Styles from "./DisplayMessages.styles";
 
 type DisplayMessagesProps = {
   messages: Message[];
+  isReplying: IsReplying;
   setIsReplying: React.Dispatch<React.SetStateAction<IsReplying>>;
 };
 export const DisplayMessages = memo(
-  ({ messages, setIsReplying }: DisplayMessagesProps) => {
+  ({ messages, isReplying, setIsReplying }: DisplayMessagesProps) => {
     return (
       <ul>
         {messages.map((message: Message, index: number) => {
@@ -17,6 +18,7 @@ export const DisplayMessages = memo(
               <MessageRow
                 user={message.user}
                 text={message.text}
+                isReplying={isReplying}
                 setIsReplying={setIsReplying}
               />
             </Styles.Message>

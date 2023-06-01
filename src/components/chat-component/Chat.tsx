@@ -22,25 +22,44 @@ export const Chat = () => {
 
   const sendMessage = () => {
     if (checkIfEmpty(myMessage)) {
-      setMessages([
-        ...messages,
-        {
-          user: {
-            username: "You",
-            color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+      if (!isReplying.state) {
+        setMessages([
+          ...messages,
+          {
+            user: {
+              username: "You",
+              color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+            },
+            text: myMessage,
           },
-          text: myMessage,
-        },
-      ]);
-      if (!isReplying) {
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          {
+            user: {
+              username: "You",
+              color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+            },
+            text: ` Replying to ${
+              isReplying.replyTo.username
+            }'s chat : "${isReplying.replyTo.text.substring(
+              0,
+              30
+            )}"... You: ${myMessage}`,
+          },
+        ]);
+      }
+
+      if (!isReplying.state) {
         setMyMessage("");
       } else {
         setMyMessage("");
         setIsReplying({
           state: false,
           replyTo: {
-            username: isReplying.replyTo.username,
-            text: isReplying.replyTo.text,
+            username: "",
+            text: "",
           },
         });
       }
@@ -72,6 +91,7 @@ export const Chat = () => {
         setUserHasScrolledUp={setUserHasScrolledUp}
         bottomOfTheChatRef={bottomOfTheChatRef}
         chatWindowRef={chatWindowRef}
+        isReplying={isReplying}
         setIsReplying={setIsReplying}
       />
 
