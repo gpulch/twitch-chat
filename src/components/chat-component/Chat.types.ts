@@ -13,3 +13,8 @@ export type MessageInfo = {
   user: { username: string; color: string };
   date: number;
 };
+
+export type IsReplying = {
+  state: boolean;
+  replyToUsername: string;
+};

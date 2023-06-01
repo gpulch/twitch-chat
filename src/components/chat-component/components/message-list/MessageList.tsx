@@ -1,8 +1,9 @@
 import React from "react";
 import * as Styles from "./MessageList.styles";
 import { ScrollPausedPopover } from "../sroll-paused-popover";
-import { Message } from "../../Chat.types";
+import { IsReplying, Message } from "../../Chat.types";
 import { DisplayMessages } from "./display-messages";
+import { ReplyPopover } from "../chat-user-input/reply-popover";
 
 type MessageListProps = {
   messages: Message[];
@@ -10,6 +11,8 @@ type MessageListProps = {
   setUserHasScrolledUp: Function;
   chatWindowRef: React.RefObject<HTMLDivElement>;
   bottomOfTheChatRef: React.RefObject<HTMLDivElement>;
+  isReplying: IsReplying;
+  setIsReplying: React.Dispatch<React.SetStateAction<IsReplying>>;
 };
 
 export const MessageList = ({
@@ -18,6 +21,8 @@ export const MessageList = ({
   setUserHasScrolledUp,
   chatWindowRef,
   bottomOfTheChatRef,
+  isReplying,
+  setIsReplying,
 }: MessageListProps) => {
   const scroll = () => {
     // detect if user has scrolled up, override autoscroll and toggle the popover
@@ -72,9 +77,12 @@ export const MessageList = ({
       <Styles.WelcomeToTheChat>Welcome to the chat !</Styles.WelcomeToTheChat>
 
       <div id={"list"} ref={bottomOfTheChatRef}>
-        <DisplayMessages messages={messages} />
+        <DisplayMessages
+          messages={messages}
+          isReplying={isReplying}
+          setIsReplying={setIsReplying}
+        />
       </div>
-
       {userHasScrolledUp ? (
         <ScrollPausedPopover
           bottomOfTheChatRef={bottomOfTheChatRef}

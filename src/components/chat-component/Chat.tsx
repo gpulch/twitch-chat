@@ -6,12 +6,17 @@ import { ChatUserInput } from "./components/chat-user-input";
 import * as Styles from "./Chat.styles";
 import { useMessagesState } from "./chat-hooks/useMessagesState";
 import { checkIfEmpty } from "./Chat.utils";
+import { IsReplying } from "./Chat.types";
 
 export const Chat = () => {
   const [myMessage, setMyMessage] = useState<string>("");
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const bottomOfTheChatRef = useRef<HTMLDivElement>(null);
   const [userHasScrolledUp, setUserHasScrolledUp] = useState<boolean>(false);
+  const [isReplying, setIsReplying] = useState<IsReplying>({
+    state: false,
+    replyToUsername: "",
+  });
 
   const [messages, setMessages] = useMessagesState();
 
@@ -57,6 +62,8 @@ export const Chat = () => {
         setUserHasScrolledUp={setUserHasScrolledUp}
         bottomOfTheChatRef={bottomOfTheChatRef}
         chatWindowRef={chatWindowRef}
+        isReplying={isReplying}
+        setIsReplying={setIsReplying}
       />
 
       <Styles.SendMessageContainer>
@@ -64,6 +71,8 @@ export const Chat = () => {
           sendMessage={sendMessage}
           myMessage={myMessage}
           setMyMessage={setMyMessage}
+          isReplying={isReplying}
+          setIsReplying={setIsReplying}
         />
         <ChatFooter sendMessage={sendMessage} />
       </Styles.SendMessageContainer>
