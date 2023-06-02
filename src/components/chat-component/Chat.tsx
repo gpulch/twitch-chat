@@ -22,6 +22,7 @@ export const Chat = () => {
 
   const sendMessage = () => {
     if (checkIfEmpty(myMessage)) {
+      // main case = user not replying to another chat
       if (!isReplying.state) {
         setMessages([
           ...messages,
@@ -33,6 +34,8 @@ export const Chat = () => {
             text: myMessage,
           },
         ]);
+
+        // case when user is replying to another chat
       } else {
         setMessages([
           ...messages,
@@ -91,7 +94,6 @@ export const Chat = () => {
         setUserHasScrolledUp={setUserHasScrolledUp}
         bottomOfTheChatRef={bottomOfTheChatRef}
         chatWindowRef={chatWindowRef}
-        isReplying={isReplying}
         setIsReplying={setIsReplying}
       />
 

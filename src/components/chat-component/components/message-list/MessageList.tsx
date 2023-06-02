@@ -10,7 +10,6 @@ type MessageListProps = {
   setUserHasScrolledUp: Function;
   chatWindowRef: React.RefObject<HTMLDivElement>;
   bottomOfTheChatRef: React.RefObject<HTMLDivElement>;
-  isReplying: IsReplying;
   setIsReplying: React.Dispatch<React.SetStateAction<IsReplying>>;
 };
 
@@ -20,7 +19,7 @@ export const MessageList = ({
   setUserHasScrolledUp,
   chatWindowRef,
   bottomOfTheChatRef,
-  isReplying,
+
   setIsReplying,
 }: MessageListProps) => {
   const scroll = () => {
@@ -76,11 +75,7 @@ export const MessageList = ({
       <Styles.WelcomeToTheChat>Welcome to the chat !</Styles.WelcomeToTheChat>
 
       <div id={"list"} ref={bottomOfTheChatRef}>
-        <DisplayMessages
-          messages={messages}
-          isReplying={isReplying}
-          setIsReplying={setIsReplying}
-        />
+        <DisplayMessages messages={messages} setIsReplying={setIsReplying} />
       </div>
       {userHasScrolledUp ? (
         <ScrollPausedPopover
