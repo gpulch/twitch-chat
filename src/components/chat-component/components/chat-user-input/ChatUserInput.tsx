@@ -34,7 +34,10 @@ export const ChatUserInput = ({
   };
 
   return (
-    <Styles.BorderAroundInputAndReply>
+    <Styles.BorderAroundInputAndReply
+      id="borderAroundInputAndReply"
+      isReplying={isReplying.state}
+    >
       {isReplying.state ? (
         <ReplyPopover isReplying={isReplying} setIsReplying={setIsReplying} />
       ) : null}

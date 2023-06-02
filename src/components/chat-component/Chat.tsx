@@ -45,7 +45,7 @@ export const Chat = () => {
               isReplying.replyTo.username
             }'s chat : "${isReplying.replyTo.text.substring(
               0,
-              30
+              60
             )}"... You: ${myMessage}`,
           },
         ]);

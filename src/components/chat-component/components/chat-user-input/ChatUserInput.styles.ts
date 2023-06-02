@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const BorderAroundInputAndReply = styled.div`
+export const BorderAroundInputAndReply = styled.div<{ isReplying: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 98%;
   padding: 8px;
-  border: rgb(80, 80, 80) solid 1px;
+  border: ${(props) =>
+    !props.isReplying ? null : "rgb(80, 80, 80) solid 1px"};
   border-radius: 5px;
 `;
 export const InputWithEmojiButton = styled.div`
